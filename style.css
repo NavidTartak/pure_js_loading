@@ -1,0 +1,139 @@
+body {
+    background-color: #f1f1f1
+}
+
+.buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90vw;
+    margin: auto auto;
+    min-height: 10vh;
+}
+
+.button {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.6em;
+    background-color: crimson;
+    border: none !important;
+    color: white;
+    font-weight: 600;
+    padding: 0.8em 1.2em;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    min-width: 10em;
+    min-height: 45px;
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+
+.disabledButton {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.6em;
+    background-color: crimson;
+    border: none !important;
+    color: white;
+    font-weight: 600;
+    padding: 0.8em 1.2em;
+    transition: 0.2s ease-in-out;
+    min-width: 10em;
+    min-height: 45px;
+    opacity: 0.8;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90vw;
+    margin: auto auto;
+    min-height: 85vh;
+    row-gap: 0.3em;
+    column-gap: 0.3em;
+}
+
+.card {
+    width: 12em;
+    min-height: 20em;
+    background-color: white;
+    border-radius: 0.6em;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    justify-content: center;
+    align-items: center;
+    padding: .1em .3em;
+}
+
+.img {
+    width: 150px;
+    height: 150px;
+}
+
+.p {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.8em;
+    line-height: 1.5em;
+}
+
+.loader {
+    margin: 0px auto;
+    width: 18px;
+    height: 18px;
+    border: double 2.5px transparent;
+    border-radius: 30px;
+    background-image: linear-gradient(crimson, crimson),
+        linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 1));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    animation: spin;
+    animation-duration: 1.3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    transition: 0.2s ease-in-out;
+
+}
+
+.loaderDark {
+    margin: 0px auto;
+    width: 18px;
+    height: 18px;
+    border: double 2.5px transparent;
+    border-radius: 30px;
+    background-image: linear-gradient(#f1f1f1, #f1f1f1),
+        linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 1));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    animation: spin;
+    animation-duration: 1.3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    transition: 0.2s ease-in-out;
+
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotateZ(0deg)
+    }
+
+    100% {
+        transform: rotateZ(360deg)
+    }
+}

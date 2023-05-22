@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="buttoncontainer">
+      <div id="user_button">
+        <button class="button" onclick="callUsers()">Load Users</button>
+      </div>
+      <div id="photo_button">
+        <button class="button" onclick="callPhotos()">Load Photos</button>
+      </div>
+    </div>
+    <div id="cards_container" class="container" dir="rtl"></div>
+    <script>
+      var containerElement = document.getElementById("cards_container");
+      var photoElement = document.getElementById("photo_button");
+      var userElement = document.getElementById("user_button");
+
+      async function callPhotos() {
+        photoElement.innerHTML = `<button class="disabledButton"><div class="loader"></div></button>`;
+        containerElement.innerHTML = `<div class="loaderDark"></div>`;
+        await setPhotoCards();
+        photoElement.innerHTML = `<button class="button" onclick="callPhotos()">Load Photos</button>`;
+      }
+
+      async function callUsers() {
+        userElement.innerHTML = `<button class="disabledButton"><div class="loader"></div></button>`;
+        containerElement.innerHTML = `<div class="loaderDark"></div>`;
+        await setPhotoCards();
+        userElement.innerHTML = `<button class="button" onclick="callUsers()">Load Users</button>`;
+      }
+
+      async function setPhotoCards() {
+        let cards = [];
+        cards = await fetch("https://jsonplaceholder.typicode.com/photos")
+          .then((response) => response.json())
+          .then((json) => json)
+          .catch(() => []);
+        let html = "";
+        cards.map((card) => {
+          html += `<div class="card" dir="ltr">
+                                <img class="img" src="${card.thumbnailUrl}" alt="${card.title}" />
+                                <p class="p">${card.title}</p>
+                         </div>`;
+        });
+        containerElement.innerHTML = html;
+      }
+      async function setUserCards() {
+        let cards = [];
+        cards = await fetch("https://jsonplaceholder.typicode.com/users")
+          .then((response) => response.json())
+          .then((json) => json)
+          .catch(() => []);
+        let html = "";
+        cards.map((card) => {
+          html += `<div class="card" dir="ltr">
+                              <img class="img" src="/65ac19.png" alt="fake person" />
+                              <p class="p">
+                                  name : ${card.name}
+                                  <br />
+                                  email : ${card.email}
+                                  <br />
+                                  city : ${card.address.city}
+                                  <br />
+                                  phone : ${card.phone}
+                              </p>
+                      </div>`;
+        });
+        containerElement.innerHTML = html;
+      }
+    </script>
+  </body>
+</html>
