@@ -17,15 +17,17 @@
       </div>
     </div>
     <div id="cards_container" class="container" dir="rtl"></div>
+    <div id="paging_container" class="pagingContainer"></div>
     <script>
       var containerElement = document.getElementById("cards_container");
       var photoElement = document.getElementById("photo_button");
       var userElement = document.getElementById("user_button");
-
+      var pagingContainer = document.getElementById("paging_container");
+      let photosCard = [];
       async function callPhotos() {
         photoElement.innerHTML = `<button class="disabledButton"><div class="loader"></div></button>`;
         containerElement.innerHTML = `<div class="loaderDark"></div>`;
-        await setPhotoCards();
+        await setPhotoCards(1);
         photoElement.innerHTML = `<button class="button" onclick="callPhotos()">Load Photos</button>`;
       }
 
@@ -36,14 +38,31 @@
         userElement.innerHTML = `<button class="button" onclick="callUsers()">Load Users</button>`;
       }
 
-      async function setPhotoCards() {
-        let cards = [];
-        cards = await fetch("https://jsonplaceholder.typicode.com/photos")
-          .then((response) => response.json())
-          .then((json) => json)
-          .catch(() => []);
+      async function setPhotoCards(pageNum) {
+        debugger;
+        if (photosCard.length === 0) {
+          photosCard = await fetch(
+            "https://jsonplaceholder.typicode.com/photos"
+          )
+            .then((response) => response.json())
+            .then((json) => json)
+            .catch(() => []);
+        }
+        const pageNumbers =
+          photosCard.length % 60 === 0
+            ? parseInt(photosCard.length / 60)
+            : parseInt(photosCard.length / 60) + 1;
+        let pageHtml = "";
+        for (let i = 1; i < pageNumbers; i++) {
+          if (i === pageNum) {
+            pageHtml += `<span id="pager_${i}" class="pager-active page">${i}</span>`;
+          } else {
+            pageHtml += `<span id="pager_${i}" class="pager page">${i}</span>`;
+          }
+        }
+        pagingContainer.innerHTML = pageHtml;
         let html = "";
-        cards.map((card) => {
+        photosCard.map((card) => {
           html += `<div class="card" dir="ltr">
                                 <img class="img" src="${card.thumbnailUrl}" alt="${card.title}" />
                                 <p class="p">${card.title}</p>

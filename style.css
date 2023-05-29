@@ -5,11 +5,12 @@ body {
 .buttoncontainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: right;
     align-items: center;
     width: 90vw;
     margin: auto auto;
     min-height: 10vh;
+    column-gap: 0.3em;
 }
 
 .button {
@@ -56,9 +57,25 @@ body {
     align-items: center;
     width: 90vw;
     margin: auto auto;
-    min-height: 85vh;
+    min-height: 80vh;
     row-gap: 0.3em;
     column-gap: 0.3em;
+}
+
+.pagingContainer {
+    display: flex;
+    margin: auto auto;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.5em;
+    flex-wrap: wrap;
+    row-gap: 0.5em;
+    background-color: #f1f1f1;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 0.8em 5vw;
 }
 
 .card {
@@ -127,6 +144,33 @@ body {
 
 }
 
+.pager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: crimson;
+    color: white;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.pager-active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: gray;
+    color: white;
+    width: 23px;
+    height: 23px;
+    cursor: default;
+    text-align: center;
+    font-size: 0.9em;
+}
 
 @keyframes spin {
     0% {
